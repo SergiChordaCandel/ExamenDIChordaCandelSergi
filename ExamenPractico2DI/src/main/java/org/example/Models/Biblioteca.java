@@ -4,11 +4,30 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * This class represents a Biblioteca (Library) with its books, users and loans.
+ * It provides methods to manage books, users and loans such as adding, removing, lending and returning books.
+ */
 public class Biblioteca {
-    private List<Libro> libros = new ArrayList<>();
-    private List<Usuario> usuarios = new ArrayList<>();
-    private List<Prestamo> prestamos = new ArrayList<>();
+    private List<Libro> libros ;
+    private List<Usuario> usuarios ;
+    private List<Prestamo> prestamos ;
 
+
+
+    /**
+     * Constructs a new Biblioteca with empty lists of books, users and loans.
+     */
+    public Biblioteca() {
+        libros = new ArrayList<>();
+        usuarios = new ArrayList<>();
+        prestamos = new ArrayList<>();
+    }
+
+    /**
+     * Adds a new book to the library if it's not already present.
+     * @param libro The book to be added.
+     */
     public void altaLibro(Libro libro) {
         //Aqui añadimos un libro a la lista de libros y gestionaremos que el libro no se repita
         boolean repetido = false;
@@ -22,6 +41,10 @@ public class Biblioteca {
         }
     }
 
+    /**
+     * Removes a book from the library.
+     * @param id The id of the book to be removed.
+     */
     public void bajaLibro(String id) {
         //Aqui eliminamos un libro de la lista de libros
         for (int i = 0; i < libros.size(); i++) {
@@ -31,6 +54,10 @@ public class Biblioteca {
         }
     }
 
+    /**
+     * Adds a new user to the library if they're not already present.
+     * @param usuario The user to be added.
+     */
     public void altaUsuario(Usuario usuario) {
         //Aqui añadimos un usuario a la lista de usuarios y gestionaremos que el usuario no se repita
         boolean repetido = false;
@@ -44,6 +71,10 @@ public class Biblioteca {
         }
     }
 
+    /**
+     * Removes a user from the library.
+     * @param dni The dni of the user to be removed.
+     */
     public void bajaUsuario(String dni) {
         //Aqui eliminamos un usuario de la lista de usuarios
         for (int i = 0; i < usuarios.size(); i++) {
@@ -53,6 +84,11 @@ public class Biblioteca {
         }
     }
 
+    /**
+     * Lends a book to a user if the user and the book exist and the user is not sanctioned.
+     * @param idLibro The id of the book to be lent.
+     * @param dniUsuario The dni of the user to lend the book to.
+     */
     public void prestar(String idLibro, String dniUsuario) {
         //Aqui le ponemos la fecha de devolucion que serán 14 dias y
         //gestionamos que sol opuedan coger un libro si el usuario existe ,
@@ -84,6 +120,11 @@ public class Biblioteca {
 
     }
 
+    /**
+     * Returns a book from a user. If the book is returned late, the user is sanctioned.
+     * @param idLibro The id of the book to be returned.
+     * @param dniUsuario The dni of the user returning the book.
+     */
     public void devolver(String idLibro, String dniUsuario) {
         //Aqui le quitamos la fecha de devolucion y gestionamos si el usuario
         // ha devuelto a tiempo o no y se le aplicara una sancion si no lo ha hecho
@@ -103,6 +144,11 @@ public class Biblioteca {
 
     }
 
+    /**
+     * Returns a book from a user for testing purposes. If the book is returned late, the user is sanctioned.
+     * @param idLibro The id of the book to be returned.
+     * @param dniUsuario The dni of the user returning the book.
+     */
     public void devolverTardeParaProvarTest(String idLibro, String dniUsuario) {
         //Aqui le quitamos la fecha de devolucion y gestionamos si el usuario
         // ha devuelto a tiempo o no y se le aplicara una sancion si no lo ha hecho
@@ -123,14 +169,26 @@ public class Biblioteca {
 
     }
 
+    /**
+     * Returns the list of books in the library.
+     * @return The list of books.
+     */
     public List<Libro> getLibros() {
         return libros;
     }
 
+    /**
+     * Returns the list of users in the library.
+     * @return The list of users.
+     */
     public List<Usuario> getUsuarios() {
         return usuarios;
     }
 
+    /**
+     * Returns the list of loans in the library.
+     * @return The list of loans.
+     */
     public List<Prestamo> getPrestamos() {
         return prestamos;
     }

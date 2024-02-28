@@ -3,35 +3,44 @@ package org.example.examenpractico2di;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import org.example.Models.Libro;
 
 public class ControllerNewPrestamo {
 
     @FXML
-    private Button buttonNewBook;
+    private Button buttonCancelar;
 
     @FXML
-    private Button buttonNewPrestamo;
+    private Button buttonNewPrestmo;
 
     @FXML
-    private ListView<Libro> listaLibros;
+    private TextField textIdLibro;
 
     @FXML
-    void abrirVistaNewBook(ActionEvent event) {
+    private TextField textIdUsuario;
 
+    private ControllerPrincipal controllerPrincipal=new ControllerPrincipal();
+
+    @FXML
+    void cancelarVista(ActionEvent event) {
+
+        textIdLibro.clear();
+        textIdUsuario.clear();
+        //cerra ventana
+        this.buttonCancelar.getScene().getWindow().hide();
     }
 
     @FXML
-    void abrirVistaNewPrestamo(ActionEvent event) {
-
-    }
-
-    public void initialize(){
-        listaLibros.getItems().add(new Libro("1","El Quijote","1234567890"));
-        listaLibros.getItems().add(new Libro("2","El Señor de los Anillos","1234567890"));
-        listaLibros.getItems().add(new Libro("3","El Principito","1234567890"));
-        listaLibros.refresh();
+    void confirmarPrestamo(ActionEvent event) {
+        if (textIdLibro.getText().isEmpty() || textIdUsuario.getText().isEmpty()) {
+            System.out.println("Faltan datos");
+        } else {
+            //Aqui vamos a devolver los datos al controlador main que es el que se encargara de dar de alta el libro
+            controllerPrincipal.biblioteca.prestar(textIdLibro.getText(),textIdUsuario.getText());
+            //cerra ventana
+            this.buttonCancelar.getScene().getWindow().hide();
+        }
     }
 
 }
