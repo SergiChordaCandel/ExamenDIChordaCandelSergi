@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import org.example.Models.Libro;
 
-public class ControllerPrincipal {
+public class ControllerNewPrestamo {
 
     @FXML
     private Button buttonNewBook;
