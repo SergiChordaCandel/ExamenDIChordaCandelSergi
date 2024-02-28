@@ -38,6 +38,7 @@ public class Biblioteca {
         }
         if (!repetido) {
             libros.add(libro);
+            System.out.println("Libro añadido");
         }
     }
 
@@ -50,6 +51,7 @@ public class Biblioteca {
         for (int i = 0; i < libros.size(); i++) {
             if (libros.get(i).getId().equals(id)) {
                 libros.remove(i);
+                System.out.println("Libro eliminado");
             }
         }
     }
@@ -68,6 +70,7 @@ public class Biblioteca {
         }
         if (!repetido) {
             usuarios.add(usuario);
+            System.out.println("Usuario añadido");
         }
     }
 
@@ -80,6 +83,7 @@ public class Biblioteca {
         for (int i = 0; i < usuarios.size(); i++) {
             if (usuarios.get(i).getDniUsuario().equals(dni)) {
                 usuarios.remove(i);
+                System.out.println("Usuario eliminado");
             }
         }
     }
@@ -114,8 +118,8 @@ public class Biblioteca {
         }
         if (existeUsuario && existeLibro && !sancionado) {
             Prestamo prestamo = new Prestamo(idLibro, dniUsuario);
-
             prestamos.add(prestamo);
+            System.out.println("Prestamo añadido");
         }
 
     }
@@ -139,6 +143,7 @@ public class Biblioteca {
                     }
                 }
                 prestamos.remove(i);
+                System.out.println("Prestamo eliminado");
             }
         }
 

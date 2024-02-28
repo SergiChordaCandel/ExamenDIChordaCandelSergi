@@ -20,7 +20,11 @@ public class ControllerNewPrestamo {
     @FXML
     private TextField textIdUsuario;
 
-    private ControllerPrincipal controllerPrincipal=new ControllerPrincipal();
+    private ControllerPrincipal controllerPrincipal;
+
+    public void setControllerPrincipal(ControllerPrincipal controllerPrincipal) {
+        this.controllerPrincipal = controllerPrincipal;
+    }
 
     @FXML
     void cancelarVista(ActionEvent event) {

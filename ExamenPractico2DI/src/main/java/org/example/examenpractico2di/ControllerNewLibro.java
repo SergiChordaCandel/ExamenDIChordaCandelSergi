@@ -26,7 +26,11 @@ public class ControllerNewLibro {
     @FXML
     private TextField textTitulo;
 
-    private ControllerPrincipal controllerPrincipal=new ControllerPrincipal();
+    private ControllerPrincipal controllerPrincipal;
+
+    public void setControllerPrincipal(ControllerPrincipal controllerPrincipal) {
+        this.controllerPrincipal = controllerPrincipal;
+    }
 
     /**
      * Metodo que se ejecuta al pulsar el boton de cancelar
@@ -54,6 +58,7 @@ public class ControllerNewLibro {
             //Aqui vamos a devolver los datos al controlador main que es el que se encargara de dar de alta el libro
             controllerPrincipal.biblioteca.altaLibro(new Libro(textID.getText(),textTitulo.getText(),textISBN.getText()));
             //cerra ventana
+            System.out.println("Libro dado de alta");
             this.buttonConfirmar.getScene().getWindow().hide();
         }
     }

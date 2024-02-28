@@ -9,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import org.example.Models.Biblioteca;
 import org.example.Models.Libro;
+import org.example.Models.Usuario;
 
 import java.io.IOException;
 
@@ -28,6 +29,10 @@ public class ControllerPrincipal {
 
     public Biblioteca biblioteca;
 
+    public ControllerPrincipal(){
+        biblioteca = new Biblioteca();
+    }
+
     /**
      * Metodo que se ejecuta al pulsar el boton de alta de libro
      * @param event
@@ -36,18 +41,15 @@ public class ControllerPrincipal {
     void abrirVistaNewBook(ActionEvent event) {
         //Aqui vamos a abrir la ventana de alta de libro
         try {
-            // Load the FXML file for the new window
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("vistaNewLibro.fxml"));
-            // Create a new scene
             Scene scene = new Scene(fxmlLoader.load());
-            // Create a new stage
             Stage stage = new Stage();
-            // Set the scene to the stage
             stage.setScene(scene);
-            // Add a listener to the onHidden property of the stage
             stage.setOnHidden(e -> updateBookList());
-            // Show the stage
             stage.show();
+
+            ControllerNewLibro controller = fxmlLoader.getController();
+            controller.setControllerPrincipal(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -59,6 +61,7 @@ public class ControllerPrincipal {
      * @param
      */
     private void updateBookList() {
+        System.out.println("Updating book list");
         // Clear the current list
         listaLibros.getItems().clear();
         // Add all books from the biblioteca to the list
@@ -73,17 +76,30 @@ public class ControllerPrincipal {
      */
     @FXML
     void abrirVistaNewPrestamo(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("vistaNewPrestamo.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
 
+            ControllerNewPrestamo controller = fxmlLoader.getController();
+            controller.setControllerPrincipal(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * Metodo que se ejecuta al inicializar la ventana
      */
     public void initialize(){
-        Biblioteca biblioteca = new Biblioteca();
         biblioteca.altaLibro(new Libro("1","El Quijote","1234567890"));
         biblioteca.altaLibro(new Libro("2","El Señor de los Anillos","1234567890"));
         biblioteca.altaLibro(new Libro("3","El Principito","1234567890"));
+        biblioteca.altaUsuario(new Usuario("123456789Z"));
+        biblioteca.altaUsuario(new Usuario("123456789Y"));
+        biblioteca.altaUsuario(new Usuario("123456789X"));
         listaLibros.getItems().addAll(biblioteca.getLibros());
         listaLibros.refresh();
     }
